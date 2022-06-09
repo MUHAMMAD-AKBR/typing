@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "watch": true,
+        "module": "ES6",
+        "target": "ES2018"
+    }
+}
