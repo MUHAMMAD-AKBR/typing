@@ -89,8 +89,31 @@ class typewriter {
                     i++;
                     if (i == number) {
                         clearInterval(ans);
-                        resolve();
+                        resolve(console.log(`done deleting ${number > 1 ? `${number} chars` : `${number} char`}`));
                     }
+                }, delay);
+            });
+        });
+        return this;
+    }
+    del_all(delay = 50) {
+        this.antrean.push(() => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    this.el.textContent = "";
+                    if (this.el.textContent == "") {
+                        resolve(console.log("done deleting"));
+                    }
+                }, delay);
+            });
+        });
+        return this;
+    }
+    wait(delay) {
+        this.antrean.push(() => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(`done waiting for ${delay > 1 ? `${delay} seconds` : `${delay} second`}`);
                 }, delay);
             });
         });
@@ -102,4 +125,4 @@ class typewriter {
         }
     }
 }
-const instance = new typewriter(mydiv, document.body, "#13E875", "Montserrat").attach().typing("this is the text", 100).del_char(5, 100).start();
+const instance = new typewriter(mydiv, document.body, "#13E875", "Montserrat").attach().typing("this is this text for research purposes bruh ", 100).del_char(5, 100).wait(400).del_all(100).start();
